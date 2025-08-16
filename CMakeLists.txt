@@ -1,7 +1,5 @@
-cmake_minimum_required(VERSION 3.28)
-project(CMakeSFMLProject LANGUAGES CXX)
-
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+cmake_minimum_required(VERSION 3.5)
+project(tetris LANGUAGES CXX)
 
 include(FetchContent)
 FetchContent_Declare(SFML
@@ -12,6 +10,8 @@ FetchContent_Declare(SFML
     SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(main src/main.cpp)
-target_compile_features(main PRIVATE cxx_std_17)
-target_link_libraries(main PRIVATE SFML::Graphics)
+file(GLOB_RECURSE SRC_FILES "src/*.cpp")
+
+add_executable(tetris ${SRC_FILES})
+target_compile_features(tetris PRIVATE cxx_std_23)
+target_link_libraries(tetris PRIVATE SFML::Graphics)
